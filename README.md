@@ -1,44 +1,44 @@
 # 📝 Word Count CLI
 
-Dieses Repository enthält zwei Python-Skripte zum **Zählen von Worthäufigkeiten** in UTF-8-Textdateien.
-Beide Varianten nutzen dieselbe Vorverarbeitung:
+This repository contains two Python scripts to **count word frequencies** in UTF-8 text files.
+Both variants use the same preprocessing:
 
-* 🔡 Alles wird **kleingeschrieben**
-* 🔠 Erlaubt sind Buchstaben, Ziffern, **Umlaute (ä, ö, ü, ß)**, Apostrophe `'` und Bindestriche `-`
-* 🧹 Alle anderen Zeichen werden durch Leerzeichen ersetzt
-* 🚫 Leere Tokens werden entfernt
+* 🔡 Convert everything to **lowercase**
+* 🔠 Allowed: letters, digits, **Umlauts (ä, ö, ü, ß)**, apostrophes `'`, and hyphens `-`
+* 🧹 All other characters are replaced with spaces
+* 🚫 Empty tokens are removed
 
 ---
 
-## 📂 Skripte
+## 📂 Scripts
 
 * **`counter_method.py`**
-  📖 Liest die gesamte Datei in den Speicher und verwendet `collections.Counter`.
-  ✅ Gut für kleine bis mittelgroße Dateien.
+  📖 Reads the entire file into memory and uses `collections.Counter`.
+  ✅ Best for small to medium-sized files.
 
 * **`streaming_method.py`**
-  📄 Liest die Datei **zeilenweise** ein und zählt Wörter in einem Dictionary.
-  🧠 Geeignet für sehr große Dateien, da speicherschonender.
+  📄 Reads the file **line by line** and counts words with a dictionary.
+  🧠 Recommended for very large files since it is memory-efficient.
 
 ---
 
 ## ✨ Features
 
-* 🔎 Einheitliche Tokenisierung
-* 🔀 Optionales Sortieren:
+* 🔎 Unified tokenization
+* 🔀 Optional sorting:
 
-  * `--sort-by-frequency` → nach Häufigkeit (absteigend)
-  * `--sort-by-length` → nach Wortlänge (aufsteigend)
-  * Standard: alphabetisch
-* 🕒 Logging mit Zeitstempeln
-* 🛡️ Robustes Error-Handling bei Datei-I/O
+  * `--sort-by-frequency` → by frequency (descending)
+  * `--sort-by-length` → by word length (ascending)
+  * Default: alphabetical
+* 🕒 Logging with timestamps
+* 🛡️ Robust error handling for file I/O
 
 ---
 
 ## ⚙️ Installation
 
-1. Stelle sicher, dass Python **3.8+** installiert ist.
-2. Repository klonen:
+1. Make sure Python **3.8+** is installed.
+2. Clone the repository:
 
    ```bash
    git clone https://github.com/aaronkaipf/wordCount
@@ -47,42 +47,42 @@ Beide Varianten nutzen dieselbe Vorverarbeitung:
 
 ---
 
-## ▶️ Nutzung
+## ▶️ Usage
 
-### Mit `counter_method.py`
+### With `counter_method.py`
 
 ```bash
 python counter_method.py input.txt -o counts.txt --sort-by-frequency
 ```
 
-* 📥 Liest `input.txt`
-* 🧮 Zählt die Wörter
-* 📊 Sortiert nach Häufigkeit (häufigste zuerst)
-* 💾 Speichert Ergebnis in `counts.txt`
+* 📥 Reads `input.txt`
+* 🧮 Counts all words
+* 📊 Sorts by frequency (most common first)
+* 💾 Saves results in `counts.txt`
 
 ---
 
-### Mit `streaming_method.py`
+### With `streaming_method.py`
 
 ```bash
 python streaming_method.py input.txt --sort-by-length
 ```
 
-* 📥 Liest `input.txt` zeilenweise
-* 📏 Sortiert Wörter nach Länge
-* 💾 Schreibt Ergebnis in `word_counts.txt` (Standardausgabe-Datei)
+* 📥 Reads `input.txt` line by line
+* 📏 Sorts words by length
+* 💾 Writes results to `word_counts.txt` (default output file)
 
 ---
 
-## 📤 Ausgabeformat
+## 📤 Output Format
 
-Die Ergebnisdateien bestehen aus Zeilen im Format:
+The result files consist of lines in the format:
 
 ```
-wort: anzahl
+word: count
 ```
 
-Beispiel:
+Example:
 
 ```
 python: 12
@@ -92,48 +92,46 @@ ai: 3
 
 ---
 
-## 🤔 Welche Methode wählen?
+## 🤔 Which method to choose?
 
-* ⚡ **Counter-Methode** (`counter_method.py`): schneller & einfacher bei kleinen Dateien
-* 🐘 **Streaming-Methode** (`streaming_method.py`): besser für große Dateien (weniger Speicherverbrauch)
+* ⚡ **Counter Method** (`counter_method.py`): faster & simpler for small files
+* 🐘 **Streaming Method** (`streaming_method.py`): better for large files (lower memory usage)
 
 ---
 
-## 📚 Beispiele
+## 📚 Examples
 
-### Beispiel-Input (`input.txt`):
+### Example Input (`input.txt`):
 
 ```
-Python ist toll. Python-Code macht Spaß!
-AI und Code gehören zusammen.
+Python is great. Python-code is fun!
+AI and code belong together.
 ```
 
-### Ausgabe mit `counter_method.py --sort-by-frequency`
+### Output with `counter_method.py --sort-by-frequency`
 
 ```
 python: 2
 code: 2
-ist: 1
-toll: 1
-macht: 1
-spaß: 1
+is: 1
+great: 1
+fun: 1
 ai: 1
-und: 1
-gehören: 1
-zusammen: 1
+and: 1
+belong: 1
+together: 1
 ```
 
-### Ausgabe mit `streaming_method.py --sort-by-length`
+### Output with `streaming_method.py --sort-by-length`
 
 ```
 ai: 1
-ist: 1
-und: 1
-spaß: 1
+is: 1
+and: 1
+fun: 1
 code: 2
-macht: 1
-toll: 1
+great: 1
 python: 2
-gehören: 1
-zusammen: 1
+belong: 1
+together: 1
 ```
